@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anime AI Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Anime AI Generator</h1>
+
+<form method="POST" action="/generate">
+    <textarea name="prompt" placeholder="Prompt" rows="4" cols="50">{{ prompt or "" }}</textarea><br>
+    <textarea name="negative_prompt" placeholder="Negative Prompt" rows="2" cols="50"></textarea><br>
+    
+    Lora1:
+    <select name="lora1">
+        <option value="">Keine</option>
+        {% for lora in loras %}
+            <option value="{{ lora.url }}">{{ lora.name }}</option>
+        {% endfor %}
+    </select><br>
+    
+    Lora2:
+    <select name="lora2">
+        <option value="">Keine</option>
+        {% for lora in loras %}
+            <option value="{{ lora.url }}">{{ lora.name }}</option>
+        {% endfor %}
+    </select><br>
+    
+    Steps: <input type="number" name="steps" value="20"><br>
+    Upscale: <input type="checkbox" name="upscale"><br>
+    
+    <button type="submit">Generate</button>
+</form>
+
+{% if image %}
+<h2>Result:</h2>
+<img src="data:image/png;base64,{{ image }}" style="max-width:512px;">
+{% endif %}
+</body>
+</html>
