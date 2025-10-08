@@ -1,2 +1,9 @@
-streamlit
-pandas
+fastapi
+uvicorn
+jinja2
+torch
+diffusers
+transformers
+pillow
+requests
+realesrgan
